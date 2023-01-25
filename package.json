@@ -10,5 +10,8 @@
     "release": "./node_modules/tailwindcss/lib/cli.js -i ./Styles/input.css -o ./wwwroot/css/app.css --minify"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "tailwindcss": "^3.2.4"
+  }
 }

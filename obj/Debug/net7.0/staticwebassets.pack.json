@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/TerritoryDirectory.bundle.scp.css"
     },
     {
+      "Id": "/Users/ronnelrobles/Projects/TerritoryDirectory/wwwroot/css/app.css",
+      "PackagePath": "staticwebassets/css/app.css"
+    },
+    {
       "Id": "/Users/ronnelrobles/Projects/TerritoryDirectory/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },

@@ -29,3 +29,5 @@
 /Users/ronnelrobles/Projects/TerritoryDirectory/obj/Debug/net7.0/TerritoryDirectory.pdb
 /Users/ronnelrobles/Projects/TerritoryDirectory/obj/Debug/net7.0/TerritoryDirectory.genruntimeconfig.cache
 /Users/ronnelrobles/Projects/TerritoryDirectory/obj/Debug/net7.0/ref/TerritoryDirectory.dll
+/Users/ronnelrobles/Projects/TerritoryDirectory/bin/Debug/net7.0/package-lock.json
+/Users/ronnelrobles/Projects/TerritoryDirectory/bin/Debug/net7.0/package.json
