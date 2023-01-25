@@ -1,0 +1,14 @@
+{
+  "name": "territorydirectory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "tailwind.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "./node_modules/tailwindcss/lib/cli.js -i ./Styles/input.css -o ./wwwroot/css/app.css",
+    "watch": "./node_modules/tailwindcss/lib/cli.js -i ./Styles/input.css -o ./wwwroot/css/app.css --watch",
+    "release": "./node_modules/tailwindcss/lib/cli.js -i ./Styles/input.css -o ./wwwroot/css/app.css --minify"
+  },
+  "author": "",
+  "license": "ISC"
+}
