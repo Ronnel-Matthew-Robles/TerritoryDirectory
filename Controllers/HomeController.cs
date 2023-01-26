@@ -5,9 +5,12 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using TerritoryDirectory.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 
 namespace TerritoryDirectory.Controllers;
 
+[Authorize]
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
@@ -19,15 +22,6 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        // Login disabled for now so setting username to view Home
-        HttpContext.Session.SetString("UserName", "matt");
-
-        // Check if username is present in session
-        if (HttpContext.Session.GetString("UserName") == null)
-        {
-            return RedirectToAction(nameof(AccountController.Login), "Account");
-        }
-
         return View();
     }
 

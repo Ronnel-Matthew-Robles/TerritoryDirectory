@@ -1,11 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "Ec4hNWcUUIsckhwA6Islz3qcNb/IUS1lsL3fHi/0PKR0eFx1PZ8TaLJWkL+UQqYcdQC4u9a9Od/kepDB7U0IUQ==",
+  "dgSpecHash": "VRrkir4DZ0xeqpXh4N9NPAbr1Mfz4+5x0ZirW8IFiUG4Jug1Okx2zAoAkAAE15UCvymxMuF4UR9kV2Q2+utyBA==",
   "success": true,
   "projectFilePath": "/Users/ronnelrobles/Projects/TerritoryDirectory/TerritoryDirectory.csproj",
   "expectedPackageFiles": [
     "/Users/ronnelrobles/.nuget/packages/microsoft.aspnetcore/2.2.0/microsoft.aspnetcore.2.2.0.nupkg.sha512",
+    "/Users/ronnelrobles/.nuget/packages/microsoft.aspnetcore.authentication/2.2.0/microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "/Users/ronnelrobles/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.2.0/microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
+    "/Users/ronnelrobles/.nuget/packages/microsoft.aspnetcore.authentication.cookies/2.2.0/microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "/Users/ronnelrobles/.nuget/packages/microsoft.aspnetcore.authentication.core/2.2.0/microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "/Users/ronnelrobles/.nuget/packages/microsoft.aspnetcore.connections.abstractions/2.2.0/microsoft.aspnetcore.connections.abstractions.2.2.0.nupkg.sha512",
     "/Users/ronnelrobles/.nuget/packages/microsoft.aspnetcore.cryptography.internal/2.2.0/microsoft.aspnetcore.cryptography.internal.2.2.0.nupkg.sha512",
@@ -58,6 +60,7 @@
     "/Users/ronnelrobles/.nuget/packages/microsoft.extensions.options/2.2.0/microsoft.extensions.options.2.2.0.nupkg.sha512",
     "/Users/ronnelrobles/.nuget/packages/microsoft.extensions.options.configurationextensions/2.2.0/microsoft.extensions.options.configurationextensions.2.2.0.nupkg.sha512",
     "/Users/ronnelrobles/.nuget/packages/microsoft.extensions.primitives/2.2.0/microsoft.extensions.primitives.2.2.0.nupkg.sha512",
+    "/Users/ronnelrobles/.nuget/packages/microsoft.extensions.webencoders/2.2.0/microsoft.extensions.webencoders.2.2.0.nupkg.sha512",
     "/Users/ronnelrobles/.nuget/packages/microsoft.net.http.headers/2.2.0/microsoft.net.http.headers.2.2.0.nupkg.sha512",
     "/Users/ronnelrobles/.nuget/packages/microsoft.netcore.platforms/2.0.0/microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "/Users/ronnelrobles/.nuget/packages/microsoft.win32.registry/4.5.0/microsoft.win32.registry.4.5.0.nupkg.sha512",

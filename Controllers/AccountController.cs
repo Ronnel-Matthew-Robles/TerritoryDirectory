@@ -1,9 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Text;
 using Newtonsoft.Json;
+using System.Security.Claims;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 
 namespace TerritoryDirectory.Controllers;
 
+[AllowAnonymous]
 public class AccountController : Controller
 {
 
@@ -36,9 +42,7 @@ public class AccountController : Controller
             var userName = data.username;
             var roles = data.roles;
 
-            // Not sure why I can't access session within this method
-            // SessionExtensions.SetString(HttpContext.Session,"UserName", userName);
-            // SessionExtensions.SetString(HttpContext.Session, "Roles", JsonConvert.SerializeObject(roles));
+            await SignInUser(username, JsonConvert.SerializeObject(roles));
 
             //redirect to the home page
             return RedirectToAction(nameof(HomeController.Index), "Home");
@@ -49,5 +53,21 @@ public class AccountController : Controller
             ModelState.AddModelError("", "Invalid Login Attempt");
             return View();
         }
+    }
+
+    private async Task SignInUser(string username, string roles)
+    {
+        var claims = new List<Claim>
+        {
+            new Claim(ClaimTypes.Name, username),
+            new Claim("Role", roles)
+        };
+
+        var claimsIdentity = new ClaimsIdentity(
+            claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+        await HttpContext.SignInAsync(
+            CookieAuthenticationDefaults.AuthenticationScheme,
+            new ClaimsPrincipal(claimsIdentity));
     }
 }
