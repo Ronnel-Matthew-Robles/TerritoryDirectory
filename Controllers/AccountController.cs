@@ -36,6 +36,7 @@ public class AccountController : Controller
             var userName = data.username;
             var roles = data.roles;
 
+            // Not sure why I can't access session within this method
             // SessionExtensions.SetString(HttpContext.Session,"UserName", userName);
             // SessionExtensions.SetString(HttpContext.Session, "Roles", JsonConvert.SerializeObject(roles));
 

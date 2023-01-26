@@ -3,6 +3,212 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Territory Directory</h1>
+    <p>Learn about the different territories in the PH.</p>
 </div>
+
+<div id="treeContainer"></div>
+
+<script>
+    var data = {
+        "data": [
+            {
+            "id": "1",
+            "name": "Metro Manila",
+            "parent": null
+            },
+            {
+            "id": "101",
+            "name": "Manila",
+            "parent": "1"
+            },
+            {
+            "id": "10101",
+            "name": "Malate",
+            "parent": "101"
+            },
+            {
+            "id": "10102",
+            "name": "Ermita",
+            "parent": "101"
+            },
+            {
+            "id": "10103",
+            "name": "Binondo",
+            "parent": "101"
+            },
+            {
+            "id": "102",
+            "name": "Makati",
+            "parent": "1"
+            },
+            {
+            "id": "10201",
+            "name": "Poblacion",
+            "parent": "102"
+            },
+            {
+            "id": "10202",
+            "name": "Bel-Air",
+            "parent": "102"
+            },
+            {
+            "id": "10203",
+            "name": "San Lorenzo",
+            "parent": "102"
+            },
+            {
+            "id": "10204",
+            "name": "Urdaneta",
+            "parent": "102"
+            },
+            {
+            "id": "103",
+            "name": "Marikina",
+            "parent": "1"
+            },
+            {
+            "id": "10301",
+            "name": "Sto Nino",
+            "parent": "103"
+            },
+            {
+            "id": "10302",
+            "name": "Malanday",
+            "parent": "103"
+            },
+            {
+            "id": "10303",
+            "name": "Concepcion I",
+            "parent": "103"
+            },
+            {
+            "id": "2",
+            "name": "CALABARZON",
+            "parent": null
+            },
+            {
+            "id": "201",
+            "name": "Laguna",
+            "parent": "2"
+            },
+            {
+            "id": "20101",
+            "name": "Calamba",
+            "parent": "201"
+            },
+            {
+            "id": "20102",
+            "name": "Sta. Rosa",
+            "parent": "201"
+            },
+            {
+            "id": "202",
+            "name": "Cavite",
+            "parent": "2"
+            },
+            {
+            "id": "20201",
+            "name": "Kawit",
+            "parent": "202"
+            },
+            {
+            "id": "203",
+            "name": "Batangas",
+            "parent": "2"
+            },
+            {
+            "id": "20301",
+            "name": "Lipa",
+            "parent": "203"
+            },
+            {
+            "id": "20302",
+            "name": "Tanauan",
+            "parent": "203"
+            },
+            {
+            "id": "3",
+            "name": "Central Luzon",
+            "parent": null
+            },
+            {
+            "id": "301",
+            "name": "Bulacan",
+            "parent": "3"
+            },
+            {
+            "id": "302",
+            "name": "Nueva Ecija",
+            "parent": "3"
+            },
+            {
+            "id": "303",
+            "name": "Tarlac",
+            "parent": "3"
+            },
+            {
+            "id": "304",
+            "name": "Pampanga",
+            "parent": "3"
+            }
+        ]
+        };
+        
+    // Create the tree structures from the data
+    var treeData = createTree(data.data);
+    // Get the treeContainer where the tree will be put
+    var container = document.getElementById("treeContainer");
+    // Generate the trees on the container
+    treeData.forEach(tree => {
+        // Render the tree
+        renderTree(tree, container);
+    })
+    
+
+    function createTree(data) {
+        // Create a map of all nodes, keyed by their id
+        var nodes = {};
+        for (var i = 0; i < data.length; i++) {
+            var node = data[i];
+            nodes[node.id] = node;
+            node.children = [];
+        }
+        // Add children to nodes based on their parent id
+        for (var i = 0; i < data.length; i++) {
+            var node = data[i];
+                if (node.parent) {
+                    nodes[node.parent].children.push(node);
+                } 
+        }
+        // Get all parent nodes index from data
+        var parentNodeIndexes = [];
+        for (var i = 0; i < data.length; i++){
+            if (!data[i].parent) {
+                parentNodeIndexes.push(i);
+            }
+        }
+        // Get the parent nodes from the dictionary
+        var parentNodes = [];
+        parentNodeIndexes.forEach(parent => {
+            parentNodes.push(nodes[data[parent].id]);
+        });
+        return parentNodes;
+    }
+
+    function renderTree(data, container) {
+        var ul = document.createElement('ul');
+        var li = document.createElement('li');
+        li.innerHTML = data.name;
+        ul.appendChild(li);
+        container.appendChild(ul);
+
+        // Check if there are children node
+        if (data.children) {
+            // If present, recursively call the function to render the child nodes
+            for (var i = 0; i < data.children.length; i++) {
+                renderTree(data.children[i], ul);
+            }
+        }
+    }
+</script>
