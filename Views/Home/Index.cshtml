@@ -2,6 +2,23 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+    #treeContainer ul {
+    list-style: none;
+    }
+
+    #treeContainer li::before {
+        content: "+";
+        margin-right: 5px;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    #treeContainer li[aria-expanded='true']::before {
+        content: "-";
+    }
+</style>
+
 <div class="text-center">
     <h1 class="display-4">Territory Directory</h1>
     <p>Learn about the different territories in the PH.</p>
@@ -10,16 +27,10 @@
 <div id="treeContainer"></div>
 
 <script>
-    async function fetchData() {
-        const response = await fetch("https://netzwelt-devtest.azurewebsites.net/Territories/All");
-        const data = await response.json();
-        console.log(data);    
-    }
-
-    var data = fetchData();
-        
+    var data = @Html.Raw(ViewData["territories"]);;        
+    
     // Create the tree structures from the data
-    var treeData = createTree(data.data);
+    var treeData = createTree(data.data, container);
     // Get the treeContainer where the tree will be put
     var container = document.getElementById("treeContainer");
     // Generate the trees on the container
@@ -28,11 +39,15 @@
         renderTree(tree, container);
     })
     
-
-    function createTree(data) {
+    function createTree(data, container) {
         // Create a map of all nodes, keyed by their id
         var nodes = {};
+        // Get all parent nodes index from data
+        var parentNodeIndexes = [];
         for (var i = 0; i < data.length; i++) {
+            if (!data[i].parent) {
+                parentNodeIndexes.push(i);
+            }
             var node = data[i];
             nodes[node.id] = node;
             node.children = [];
@@ -44,13 +59,6 @@
                     nodes[node.parent].children.push(node);
                 } 
         }
-        // Get all parent nodes index from data
-        var parentNodeIndexes = [];
-        for (var i = 0; i < data.length; i++){
-            if (!data[i].parent) {
-                parentNodeIndexes.push(i);
-            }
-        }
         // Get the parent nodes from the dictionary
         var parentNodes = [];
         parentNodeIndexes.forEach(parent => {
@@ -58,14 +66,13 @@
         });
         return parentNodes;
     }
-    // combine createTree and renderTree
+
     function renderTree(data, container) {
         var ul = document.createElement('ul');
         var li = document.createElement('li');
         li.innerHTML = data.name;
         ul.appendChild(li);
         container.appendChild(ul);
-
         // Check if there are children node
         if (data.children) {
             // If present, recursively call the function to render the child nodes

@@ -13,6 +13,8 @@ namespace TerritoryDirectory.Controllers;
 [Authorize]
 public class HomeController : Controller
 {
+    static HttpClient client = new HttpClient();
+
     private readonly ILogger<HomeController> _logger;
 
     public HomeController(ILogger<HomeController> logger)
@@ -22,7 +24,20 @@ public class HomeController : Controller
 
     public async Task<IActionResult> Index()
     {
-        return View();
+        var response = await client.GetAsync("https://netzwelt-devtest.azurewebsites.net/Territories/All");
+
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            ViewData["territories"] = json;
+
+            return View();
+        }
+        else
+        {
+            Console.WriteLine("Unable to fetch from API");
+            return View();
+        }
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
